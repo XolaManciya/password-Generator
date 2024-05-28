@@ -81,21 +81,25 @@ export default function PasswordGeneratorutils() {
     if (/[^A-Za-z0-9]/.test(password)) {
       score += 1;
     }
-    //return password strength
-    if (score === (0 || 1)) {
-      return { passwordStrength: "TOO WEAK" };
-    }
-    if (score === (2 || 3)) {
-      return { passwordStrength: "WEAK" };
-    }
-    if (score === 4) {
-      return { passwordStrength: "MEDIUM" };
-    }
-    if (score === 5) {
-      return { passwordStrength: "STRONG" };
-    }
 
-    return { passwordStrength: "TOO WEAK" };
+    //return password strength
+    switch (score) {
+      case 0:
+        return { passwordStrength: "TOO WEAK" };
+      case 1:
+        return { passwordStrength: "TOO WEAK" };
+      case 2:
+        return { passwordStrength: "WEAK" };
+      case 3:
+        return { passwordStrength: "WEAK" };
+      case 4:
+        return { passwordStrength: "MEDIUM" };
+      case 5:
+        return { passwordStrength: "STRONG" };
+
+      default:
+        return { passwordStrength: "TOO WEAK" };
+    }
   };
   return { checkPasswordStrength, generatePassword };
 }
